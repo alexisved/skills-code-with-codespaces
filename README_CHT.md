@@ -24,76 +24,64 @@ _使用 GitHub Codespaces 和 Visual Studio Code 來開發您的程式碼！_
 </header>
 
 <!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
+  <<< Author notes: Step 2 >>>
+  Start this step by acknowledging the previous step.
+  Define terms and link to docs.github.com.
 -->
 <!--
-  <<< 作者註記：步驟 1 >>>
-  為您的課程選擇 3-5 個步驟。
-  第一步總是最難的，所以選一些簡單的內容吧！
-  連結到 docs.github.com 以獲得更深入的解釋。
-  鼓勵使用者為每個步驟開啟新的分頁！
+  <<< 作者註記：步驟 2 >>>
+  從感謝上一步的操作開始這個步驟。
+  定義專有名詞並連結到 docs.github.com。
 -->
 
-## 步驟 1：建立您的第一個 Codespace 並推送程式碼
+## 步驟 2：為您的 Codespace 加入自訂映像檔！
 
-_歡迎來到「使用 GitHub Codespaces 與 Visual Studio Code 進行程式碼開發」！ :wave:_
+_做得好！:tada: 您已成功建立第一個 Codespace，並使用 VS Code 推送了程式碼！_
 
-**使用 Codespace 進行軟體開發，到底有什麼了不起的呢？** Codespace 是一個託管在雲端的開發環境。您可以透過將設定檔提交到您的儲存庫（也就是所謂的「設定即程式碼」），來為您的專案客製化 GitHub Codespaces，這樣就能為專案的所有使用者建立一個可重複使用的 Codespace 設定。您建立的每個 Codespace 都由 GitHub 託管在一個運行於虛擬機器上的 Docker 容器中。您可以根據所需的資源，選擇您想要使用的機器類型。
+您可以設定儲存庫的開發容器，這樣一來，為該儲存庫建立的任何 Codespace 都會提供您一個量身打造的開發環境，其中包含了您在特定專案上工作所需的所有工具和執行階段 (runtimes)。
 
-GitHub 提供了一系列功能，幫助您的開發團隊客製化 Codespace，以達到最佳的設定與效能需求。舉例來說，您可以：
+**什麼是開發容器 (development containers)？** 開發容器（dev containers）是經過特殊設定的 Docker 容器，用來提供一個功能齊全的開發環境。每當您在 Codespace 中工作時，您其實就是在虛擬機器上使用一個開發容器。
 
-- 從您的儲存庫建立一個 Codespace。
-- 從 Codespace 將程式碼推送到您的儲存庫。
-- 使用 VS Code 進行程式碼開發。
-- 使用自訂映像檔來客製化 Codespace。
-- 管理 Codespace。
+開發容器設定檔 (`devcontainer.json`) 是一個 JSON 檔案，它能讓您客製化執行 Codespace 的預設映像檔、VS Code 設定、執行自訂程式碼、轉發連接埠 (forward ports) 等等，功能非常多！
 
-要開始使用 GitHub Codespaces 進行開發，您可以從一個範本，或是從儲存庫中的任何分支或提交來建立一個 Codespace。當您從範本建立 Codespace 時，您可以從一個空白範本開始，或是選擇一個適合您工作的範本。
+現在，就讓我們來新增一個 `devcontainer.json` 檔案，並加入一個自訂映像檔吧。
 
-### :keyboard: 動手做：啟動一個 Codespace
+### :keyboard: 動手做：新增 .devcontainer.json 檔案來客製化您的 Codespace
 
-**我們建議您另外開啟一個瀏覽器分頁來進行接下來的活動，這樣您就可以隨時參考這些說明。**
+1. 回到您儲存庫的 **Code** 索引標籤，點擊 **Add file** (新增檔案) 下拉按鈕，然後點擊 `Create new file` (建立新檔案)。
+2. 在提示的空白文字欄位中，輸入或貼上以下內容來為您的檔案命名。
 
-1. 從您的儲存庫首頁開始。
-2. 點擊頁面中間綠色的 **Code** 按鈕。
-3. 在跳出的視窗中選擇 **Codespaces** 標籤，然後點擊 **Create codespace on main** 按鈕。
-
-   > 等待約 2 分鐘，讓 Codespace 自行啟動。
-   > **請注意**：這是在背景啟動一台虛擬機器喔。
-
-4. 確認您的 Codespace 正在運行。瀏覽器中應該會出現一個網頁版的 VS Code 編輯器，並且會有一個終端機視窗，如下圖所示：
-   ![codespace 介面範例](https://user-images.githubusercontent.com/26442605/207355196-71aab43f-35a9-495b-bcfe-bf3773c2f1b3.png)
-
-### :keyboard: 動手做：從 Codespace 推送程式碼到您的儲存庫
-
-1. 在 Codespace 的 VS Code 檔案總管視窗中，選擇 `index.html` 檔案。
-2. 將 **h1** 標頭替換成以下內容：
-
-   ```html
-   <h1>Hello from the codespace!</h1>
+   ```
+   .devcontainer/devcontainer.json
    ```
 
-3. 儲存檔案。
-   > **請注意**：檔案應該會自動儲存。
-4. 使用 VS Code 的終端機，輸入以下的提交訊息來提交檔案變更：
+3. 在新檔案 **.devcontainer/devcontainer.json** 的內容區塊，加入以下內容：
 
-   ```shell
-   git commit -a -m "Adding hello from the codespace!"
+   ```jsonc
+   {
+     // 為此設定命名
+     "name": "Codespace for Skills!",
+     // 使用基礎的 codespace 映像檔
+     "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+
+     "remoteUser": "codespace",
+     "overrideCommand": false
+   }
    ```
 
-5. 將變更推送到您的儲存庫。在 VS Code 終端機中輸入：
+4. 點擊 **Commit changes** (提交變更)，然後選擇 **Commit changes directly to the `main` branch** (直接提交變更到 `main` 分支)。
+5. 回到您儲存庫的 **Code** 索引標籤，來建立一個新的 Codespace。
+6. 點擊頁面中間綠色的 **Code** 按鈕。
+7. 在跳出的視窗中點擊 **Codespaces** 標籤。
+8. 點擊 **Create codespace on main** 按鈕，或是點擊分頁上的 `+` 號。這會在 `main` 分支上建立一個新的 Codespace。(請注意，您先前的 Codespace 也會列在這裡。)
 
-   ```shell
-   git push
-   ```
+   > 等待約 **2 分鐘**，讓 Codespace 自行啟動。
 
-6. 您的程式碼已經成功推送到儲存庫了！
-7. 切換回您儲存庫的首頁，並檢視 `index.html` 來確認新的程式碼已成功推送。
-8. 等待約 20 秒，然後重新整理這個頁面（也就是您正在閱讀說明的這個頁面）。[GitHub Actions](https://docs.github.com/en/actions) 將會自動將課程更新到下一個步驟。
+9. 確認您的新 Codespace 已如先前一樣正常運行。
+
+   請注意，這裡使用的映像檔是 GitHub Codespaces 提供的預設映像檔。它包含了 Python、Node.js、Docker 等等的執行階段和工具。您可以在這裡查看完整列表：https://aka.ms/ghcs-default-image。您的開發團隊可以使用任何已安裝必要先備條件的自訂映像檔。想了解更多資訊，請參閱 [Codespace 映像檔](https://aka.ms/configure-codespace)。
+
+10. 等待約 20 秒，然後重新整理這個頁面（也就是您正在閱讀說明的這個頁面）。[GitHub Actions](https://docs.github.com/en/actions) 將會自動將課程更新到下一個步驟。
 
 <footer>
 
