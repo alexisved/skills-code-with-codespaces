@@ -1,0 +1,9 @@
+{
+  // 為此設定命名
+  "name": "Codespace for Skills!",
+  // 使用基礎的 codespace 映像檔
+  "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+
+  "remoteUser": "codespace",
+  "overrideCommand": false
+}
